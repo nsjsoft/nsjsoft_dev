@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <title>CSS</title>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+            }
+            div.x {
+                background-color: #2196f3;
+                top: 20px;
+                left: 200px;
+                z-index: 10;
+            }
+            div.y {
+                background-color: #1976d2;
+                top: 50px;
+                left: 260px;
+            }
+            div.z {
+                background-color: #0d47a1;
+                top: 80px;
+                left: 230px;
+                z-index: 9999;
+            }
+            div.xx {
+                background-color: #f44336;
+                top: 30px;
+                left: 50px;
+                z-index: 2;
+            }
+            div.yy {
+                background-color: #d32f2f;
+                top: 60px;
+                left: 110px;
+                z-index: 3;
+            }
+            div.zz {
+                background-color: #b71c1c;
+                top: 90px;
+                left: 70px;
+                z-index: 1;
+            }
+        </style>
+        <script>
+            /*
+            function Person() {
+                this.eyes = 2;
+                this.nose = 1;
+            }
+
+            var kim = new Person();
+            var park = new Person();
+
+            console.log(kim.eyes);
+            console.log(kim.nose);
+
+            console.log(park.eyes);
+            console.log(park.nose);
+            */
+
+            function Person() {}
+
+            Person.prototype.eyes = 2;
+            Person.prototype.nose = 1;
+
+            var kim = new Person();
+            var park = new Person();
+        </script>
+    </head>
+    <body>
+        <div class="x"></div>
+        <div class="y"></div>
+        <div class="z">
+            <div class="xx"></div>
+            <div class="yy"></div>
+            <div class="zz"></div>
+        </div>
+    </body>
+</html>

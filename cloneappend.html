@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        $(document).ready(function () { 	
+	        //행삭제
+	        $('#movie_url').on('click', '.row_delete', function () {
+		        row_delete($(this));
+	        });
+
+        });
+
+        //영상추가
+        var addMovie = function()
+        {
+            var $e = $("#movie_url ul li:last").clone();
+            $e.find("input").val("");
+            $("#movie_url ul").append($e);
+        }
+
+        //영상 삭제
+        function row_delete(obj) {
+            if($('#movie_url ul li').length > 1){
+               $(obj).parent().remove();
+            }
+            else {
+                alert('마지막 데이터는 삭제 불가합니다.');
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="movie_url">
+        링크 추가 <a href='javascript:addMovie();'>[Add] </a>
+        <ul> 
+            <li>
+                url : <input type=text class=ed name=url id=txtUrl size=60 maxlength=255 value='' required itemname='URL'> 
+                <button class="row_delete">삭제</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

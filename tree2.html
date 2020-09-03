@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // var directories = [
+        //         {name: 'users'      , parent : null },
+        //         {name: 'distalx'    , parent : 'users' },
+        //         // {name: 'guest'      , parent : 'users' },
+        //         // {name: 'shared'     , parent : 'users' },
+        //         {name: 'documents'  , parent : 'distalx' },
+        //         // {name: 'music'      , parent : 'distalx' },
+        //         // {name: 'desktop'    , parent : 'distalx' },
+        //         // {name: 'javascript' , parent : 'documents' },
+        //         // {name: 'funjs'      , parent : 'documents' },
+        //         {name: 'functions'  , parent : 'documents' }
+        //         ];
+        
+        var treeModel = function (arrayList, rootId) {
+                
+            var rootNodes = [];
+
+                var traverse = function (nodes, item, index) {
+
+                    if (nodes instanceof Array) {
+                        return nodes.some(function (node) {
+                            if (node.name === item.parent) {
+                                node.children = node.children || [];
+                                return node.children.push(arrayList.splice(index, 1)[0]);
+                            }
+
+                            return traverse(node.children, item, index);
+                        });
+                    }
+
+                };
+
+                while (arrayList.length > 0) {
+                    arrayList.some(function (item, index) {
+                        if (item.parent === rootId) {
+                            return rootNodes.push(arrayList.splice(index, 1)[0]);
+                        }
+
+                        return traverse(rootNodes, item, index);
+                    });
+                }
+
+                return rootNodes;
+            };
+
+        //treeModel(directories, null);
+
+        var directories = [
+                {name: 'users'      , parent : null },
+                {name: 'distalx'    , parent : 'users' },
+                {name: 'documents'  , parent : 'distalx' },
+                {name: 'functions'  , parent : 'documents' }
+                ];
+
+        var rootNodes = [];
+
+        function fnSomeTest(nodes, item) {
+            
+            return nodes.some(function (node) {
+                if (node.name === item.parent) {
+                    node.children = node.children || [];
+                    console.log(node.children.push(directories.splice(0, 1)[0]));
+                }
+
+                console.log(node);
+                console.log(node.children);
+
+                fnSomeTest(node.children, item);
+
+            });
+        }
+
+        console.log(directories[0]);
+        rootNodes.push(directories.splice(0, 1)[0]);
+        console.log(fnSomeTest(rootNodes, directories[0]));
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

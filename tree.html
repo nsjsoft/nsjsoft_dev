@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        /*
+        var treeModel = function (arrayList, rootId) {
+            var rootNodes = [];
+            var traverse = function (nodes, item, index) {
+                if (nodes instanceof Array) {
+                    return nodes.some(function (node) {
+                        if (node.id === item.parentId) {
+                            node.children = node.children || [];
+                            return node.children.push(arrayList.splice(index, 1)[0]);
+                        }
+
+                        return traverse(node.children, item, index);
+                    });
+                }
+            };
+
+            while (arrayList.length > 0) {
+                arrayList.some(function (item, index) {
+                    if (item.parentId === rootId) {
+                        return rootNodes.push(arrayList.splice(index, 1)[0]);
+                    }
+
+                    return traverse(rootNodes, item, index);
+                });
+            }
+
+            return rootNodes;
+        };
+        */
+              
+
+        var directories = [
+                {name: 'users'      , parent : null },
+                {name: 'distalx'    , parent : 'users' },
+                {name: 'guest'      , parent : 'users' },
+                {name: 'shared'     , parent : 'users' },
+                {name: 'documents'  , parent : 'distalx' }
+                // {name: 'music'      , parent : 'distalx' },
+                // {name: 'desktop'    , parent : 'distalx' },
+                // {name: 'javascript' , parent : 'documents' },
+                // {name: 'funjs'      , parent : 'documents' },
+                // {name: 'functions'  , parent : 'documents' }
+                ]
+        
+        var rtnObj = [];
+
+        var sortDirectories = function(directories, parent){
+            let node = [];
+            node = directories.filter(function(d){
+                //console.log(`filter => ${d.parent} <=> ${parent}`);
+                //console.log(parent); 
+                return d.parent === parent
+            })
+            
+            //console.log(node);
+
+            if (node.length == 0) return true;
+
+            for(var i=0; i<node.length; i++)
+                rtnObj.push(node[i]);
+
+            //console.log(node[0].name);
+
+            sortDirectories(directories, node[0].name);
+
+            //.forEach(function(d, i){
+            //    console.log(`forEach ${i} => ${d.name} <=> ${d.parent} `);
+                //var cd = d;
+                //cd.child = sortDirectories(directories, d.name);
+                //sortDirectories(directories, d.name);
+                //return node.push(cd);
+            //})
+            //return node;
+            //console.log(rtnObj);
+            //return rtnObj;
+        }
+        
+        //var results = sortDirectories(directories, null);
+        sortDirectories(directories, null);
+        console.log(rtnObj);
+        console.log(rtnObj.length);
+        //console.log(results);
+        //console.log(JSON.stringify(results, null, ' '));
+
+        
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>

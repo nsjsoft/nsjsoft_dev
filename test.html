@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                /*
+            $(function () {
+                $('p').on({
+                    click: function () {
+                        $('div').append('마우스가 문장을 클릭했습니다.<br>');
+                    },
+                    mouseenter: function () {
+                        $('div').append(
+                            '마우스가 커서가 문장 위로 들어왔습니다.<br>'
+                        );
+                    },
+                    mouseleave: function () {
+                        $('div').append(
+                            '마우스가 커서가 문장을 빠져 나갔습니다.<br>'
+                        );
+                    },
+                });
+            });
+            */
+                var array = [
+                    { name: 'Google', link: 'http://www.google.co.kr' },
+                    { name: 'Naver', link: 'http://www.naver.com' },
+                    { name: 'Daum', link: 'http://www.daum.net' },
+                ];
+
+                $.each(array, function (index, item) {
+                    var output = '';
+
+                    output += '<a href="' + item.link + '">';
+                    output += '<h1>' + item.name + '<h1>';
+                    output += '</a>';
+
+                    //var Elem = document.getElementById('container');
+                    var Elem = document.querySelector('#container');
+
+                    Elem.innerHTML += output;
+                });
+
+                $('h1').each(function (index, item) {
+                    $(this).addClass('high-light-' + index);
+                });
+
+                var object = { name: '갱짱' };
+
+                $.extend(object, { region: '홍대', blog: 'http://www' });
+
+                var output = '';
+
+                $.each(object, function (key, item) {
+                    output += key + ':' + item + '\n';
+                });
+
+                //alert(output);
+                $('ul.level-2')
+                    .children('.item-a')
+                    .css('background-color', 'red');
+
+                $("input[name='first_name']");
+            });
+        </script>
+        <style>
+            /*
+            ul li:first-child {
+                font-weight: bold;
+            }
+            ul li::first-letter {
+                color: blue;
+                font-size: 30px;
+            }
+            
+            */
+            .test {
+                list-style: none;
+            }
+            .test li {
+                float: left;
+                margin-right: 5px;
+            }
+            .test li::before {
+                content: '진짜맛있는';
+                width: 40px;
+                padding: 3px 6px;
+                margin: 0 5px;
+                border-radius: 4px;
+                background: red;
+                text-align: center;
+                color: #fff;
+            }
+            .test li::after {
+                padding-left: 5px;
+                content: '|';
+            }
+            .test li:last-child::after {
+                content: '';
+            }
+
+            #container {
+                clear: both;
+            }
+
+            .high-light-0 {
+                background: yellow;
+            }
+            .high-light-1 {
+                background: orange;
+            }
+            .high-light-2 {
+                background: blue;
+            }
+            .high-light-3 {
+                background: red;
+            }
+            .high-light-4 {
+                background: green;
+            }
+            .high-light-5 {
+                background: gray;
+            }
+        </style>
+    </head>
+    <body>
+        <style>
+            .clearfix::after {
+                content: '';
+                clear: both;
+                display: block;
+            }
+
+            .box {
+                border: 1px solid blue;
+                float: left;
+            }
+
+            .box-container {
+                display: flex;
+            }
+        </style>
+        <script>
+            function showPopup() {
+                window.open(
+                    'popup.html',
+                    'a',
+                    'width=400,height=300, left=100, top=50'
+                );
+            }
+
+            var openWin;
+            function openChild() {
+                window.name = 'parentForm';
+                openWin = window.open(
+                    'popup.html',
+                    'childForm',
+                    'width=570, height=350, resizable=no, scrollbars=no '
+                );
+            }
+
+            function setChildText() {
+                openWin.document.getElementById(
+                    'cInput'
+                ).value = document.getElementById('pInput').value;
+            }
+
+            function openDialog() {
+                var ret;
+                var args = new Array();
+
+                args['test1'] = '111';
+                args['test2'] = '222';
+
+                ret = window.showModalDialog(
+                    'popup.html',
+                    args,
+                    'dialogHeight=420px; dialogWidth=300px; scroll=no; status=yes; help=no; center=yes'
+                );
+            }
+        </script>
+        <input type="button" value="팝업" onclick="showPopup();" />
+        <input type="button" value="팝업2" onclick="openChild();" />
+        전달할 값 : <input type="text" id="pInput" value="전달값" /><input
+            type="button"
+            onclick="setChildText()"
+        />
+        <input type="button" value="모달창" onclick="openDialog();" />
+
+        <br />
+        <div class="clearfix" style="border: 1px solid red;">
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+        </div>
+        <br />
+        <div class="box-container" style="border: 1px solid red;">
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+        </div>
+        <br />
+        <table border="1">
+            <tr>
+                <td>
+                    첫번째 tr의 첫번째 td
+                </td>
+                <td>
+                    첫번째 tr의 두번쩨 td
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    두번째 tr의 첫번쩨 td
+                </td>
+                <td>
+                    두번째 tr의 두번쩨 td
+                </td>
+            </tr>
+        </table>
+
+        <input
+            type="checkbox"
+            checked="checked"
+            id="check_box"
+            class="check_class"
+        />
+
+        <script>
+            /*
+            $(function () {
+                var prop_id = $(':checkbox').prop('id');
+                alert(prop_id);
+            });
+            
+            $(function () {
+                //eq() traversing
+                alert('1 ' + $('tr').eq(0).html());
+                alert('2 ' + $('tr').eq(1).html());
+
+                //find() traversing
+                alert('3 ' + $('tr').eq(0).find('td').eq(0).html());
+                alert('4 ' + $('tr').eq(1).find('td').eq(0).html());
+
+                //parent() traversing(둘다 같은 부모를 찾는 코드이므로 결과값 동일)
+                alert('5 ' + $('tr').eq(0).parent().html());
+                alert('6 ' + $('tr').eq(1).parent().html());
+
+                //prev() traversing
+                alert('7 ' + $('tr').eq(0).find('td').eq(1).prev().html());
+                alert('8 ' + $('tr').eq(1).find('td').eq(1).prev().html());
+
+                //next() traversing
+                alert('9 ' + $('tr').eq(0).find('td').eq(0).next().html());
+                alert('10 ' + $('tr').eq(1).find('td').eq(0).next().html());
+            });
+            */
+
+            var directories = [
+                {name: 'users'      , parent : null },
+                {name: 'distalx'    , parent : 'users' },
+                {name: 'guest'      , parent : 'users' },
+                {name: 'shared'     , parent : 'users' },
+                {name: 'documents'  , parent : 'distalx' }
+                // {name: 'music'      , parent : 'distalx' },
+                // {name: 'desktop'    , parent : 'distalx' },
+                // {name: 'javascript' , parent : 'documents' },
+                // {name: 'funjs'      , parent : 'documents' },
+                // {name: 'functions'  , parent : 'documents' }
+                ]
+        
+                console.log(directories.splice(0, 1)[0]);
+                console.log(directories);
+        </script>
+        <input type="text" name="first_name" />
+        <h1>.on()</h1>
+        <p>이 문장 위로 마우스를 움직여 보세요.</p>
+        <!--
+        <div>
+            <ul>
+                <li>이발소에 가서 이발을 했다</li>
+                <li>환장하겠네.그게 뭐</li>
+            </ul>
+        </div>
+        -->
+        <div id="content">
+            <ul class="test">
+                <li><a href="">login</a></li>
+                <li><a href="">home</a></li>
+                <li><a href="">sitemap</a></li>
+            </ul>
+        </div>
+
+        <br sytle="clear:both;" />
+        <h1>item0</h1>
+        <h1>item1</h1>
+        <h1>item2</h1>
+        <h1>item3</h1>
+        <h1>item4</h1>
+        <h1>item5</h1>
+
+        <input type="text" name="first_name" />
+        <!--
+        <div id="container"></div>
+        -->
+        <ul class="level-1">
+            <li class="item-i">I</li>
+            <li class="item-ii">
+                II
+                <ul class="level-2">
+                    <li class="item-a">A</li>
+                    <li class="item-b">
+                        B
+                        <ul class="level-3">
+                            <li class="item-1">1</li>
+                            <li class="item-2">2</li>
+                            <li class="item-3">3</li>
+                        </ul>
+                    </li>
+                    <li class="item-c">C</li>
+                </ul>
+            </li>
+            <li class="item-iii">III</li>
+        </ul>
+
+        <div id="getTag">
+            <h3>11111111111</h3>
+        </div>
+
+        <script>
+            $(function () {
+                var getTag = $('#getTag').html();
+                var getText = $('#getTag').text();
+                console.log(getTag);
+                console.log(getText);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.js"></script>
+    </head>
+    <body>
+        <script>
+
+            Person = Backbone.Model.extend({
+                defaults: {
+                    name: 'Fetus',
+                    age: 0,
+                    children: [],
+                },
+                initialize: function () {
+                    alert('Welcome to this world');
+                },
+            });
+            
+            var person = new Person({
+                name: 'Thomas',
+                age: 67,
+                children: ['Ryan'],
+            });
+            var age = person.get('age'); // 67
+            var name = person.get('name'); // "Thomas"
+            var children = person.get('children'); // ['Ryan']
+
+            console.log(age);
+            console.log(name);
+            console.log(children);
+        </script>
+    </body>
+</html>

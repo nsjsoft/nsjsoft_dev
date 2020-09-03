@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // var obj = {a:'a', b:'b'}; 
+        // //OBject생성자방식 
+        // var obj2 = new Object(); 
+        // obj2['a'] = 'a'; 
+        // obj2['b'] = 'b'; 
+        
+        
+        // //생성자함수방식 
+        // function Func(c, d){ a : c, b : d }; 
+        // var obj3 = new Func('a', 'b');
+
+        var obj = {a:'a', b:'b'}; 
+        var obj2 = {b:'c', d:'d'}; 
+        var obj3 = Object.assign(obj, obj2); 
+        console.log(obj); //{a:'a', b:'c', d:'d'} 
+        console.log(obj2); //{b:'c', c:'d'} 
+        console.log(obj3); //{a:'a', b:'c', c:'d'}
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

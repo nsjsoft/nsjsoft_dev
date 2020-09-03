@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <p id="test">안녕하세요 <span>ㅎㅎ</span></p>
+        <script type="text/javascript">
+            console.log(document.childNodes[0].nodeName); //HTML
+            console.log(document.childNodes[1].nodeName); //html
+            console.log(document.childNodes[1].childNodes[2].nodeValue);
+            console.log(document.getElementById('test').innerText);
+            console.log(document.getElementById('test').innerHTML);
+
+            document.getElementById('test').innerHTML =
+                '<a href="https://hi098123.tistory.com">안녕</a>';
+
+            //document.getElementById('test').innerText =
+            //    '<a href="https://hi098123.tistory.com">안녕</a>';
+        </script>
+    </body>
+</html>

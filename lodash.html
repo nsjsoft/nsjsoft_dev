@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/lodash.js"></script>
+    <script src="js/backbone.js"></script>
+    <script src="js/joint.js"></script>
+</head>
+<body>
+    <script>
+        const users1 = [
+            {'user' :  'joey', 'age' : 32},
+            {'user' :  'ross', 'age' : 41},
+            {'user' :  'chandler', 'age' : 39},
+        ]
+
+        users1.find(function(o) { return o.age < 40;});
+        [1, 2, 3].forEach((value, index) => {
+                console.log(index + '=>' + value);
+                });
+
+        var elements = [1,2,3,1,2,4,2,3,5,3];
+        var temp = [...new Set(elements)]; //  [1,2,3,4,5]
+    
+        console.log(temp);
+        // ({ 'a': 1, 'b': 2 }).forEach((value, key) => { // !error
+        //         console.log(key); 
+        // });
+        var users2 = [
+            { 'user': 'barney', 'age': 36, 'active': true },
+            { 'user': 'fred',   'age': 40, 'active': true }
+        ];
+    
+        console.log(_.orderBy(users2, ['user', 'age'], ['desc', 'asc']));
+
+        // var strUser = _.pluck(users, 'user');
+
+        // console.log(strUser);
+
+        console.log(_.findIndex(users2, function(chr) {
+            return chr.user === 'barney';
+        }));
+
+        console.log(_.findIndex(users2, {'user' : 'fred', 'active' : true}));
+
+        _.findIndex(users2, 'active', false);
+        var array = [1, 2, 3, 4];
+
+        // 원하는 조건에 해당되는 값은 기존 array에서 제거되어 배열로 반환됩니다.
+        var evens = _.remove(array, function(n) {
+            return n % 2 == 0;
+        });
+
+        console.log(array);
+        // → [1, 3]
+
+        console.log(evens);
+        // → [2, 4]
+
+        var arrPages = [{
+           name: 'one',
+           link: 'blah/blah',
+           pages: [{
+                    name: 'one A', 
+                    link: 'blah/blah',
+                    pages: []
+                    },
+                    {
+                        name: 'one B', 
+                        link: 'blah/blah',
+                        pages: []
+                    },
+                    {
+                        name: 'one C', 
+                        link: null,
+                        pages: [{
+                                name: 'one C I', 
+                                link: 'blah blah',
+                                pages: []
+                            }]
+                    }]
+       }]; 
+
+       function recursiveFunction(collection) { 
+            _.each(collection, function(model) { 
+                console.log(model); 
+                if(model.pages.length > 0){ 
+                   recursiveFunction(model.pages); 
+                }
+            }); 
+       };
+
+       //recursiveFunction(arrPages); 
+       console.log('======forEach=====');
+       _([1, 2]).forEach(function(n) {
+                console.log(n);
+       });
+
+       _.forEach({ 'a': 1, 'b': 2 }, function(n, key) {
+                console.log(n, key);
+       });
+
+       var bchk;
+       // 배열에 값이 있는지 찾습니다.
+        bchk = _.includes([1, 2, 3], 1);
+        // → true
+
+        // index에 해당 값이 있는지 찾습니다. 마지막 인자가 index
+        bchk = _.includes([1, 2, 3], 1, 2);
+        // → false
+
+        // 일치하는 값이 있는지 찾습니다.
+        bchk = _.includes({ 'user': 'fred', 'age': 40 }, 'fred');
+        // → true
+
+        // 일치하는 값이 문자열 안에 있는지 찾습니다.
+        bchk = _.includes('pebbles', 'eb');
+        // → true
+
+        var tmpArr = [];
+
+        function timesThree(n) {
+            return n * 3;
+        }
+
+        // 해당함수를 실행하고 그 결과를 배열로 반환합니다.
+        tmpArr = _.map([1, 2], timesThree);
+        // → [3, 6]
+
+        // 해당함수를 실행하고 그 결과를 배열로 반환합니다.
+        tmpArr = _.map({ 'a': 1, 'b': 2 }, timesThree);
+        // → [3, 6]
+
+        var customer = [
+        { 'user': 'barney' },
+        { 'user': 'fred' }
+        ];
+
+        // key값만 집어넣을 경우 해당 value값들을 배열로 반환해줍니다.
+        tmpArr = _.map(customer, 'user');
+        // → ['barney', 'fred']
+
+        var tmpStr;
+        // reduce는 콜백함수의 첫번째 인자로 전의 함수가 실행시킨 결과를 받습니다.
+        // 그리고 함수가 모두 실행된 뒤에 결과를 반환합니다.
+        tmpStr = _.reduce([1, 2], function(total, n) {
+            return total + n;
+        });
+        console.log(tmpStr);
+        // → 3
+        
+        // reduce는 콜백함수의 첫번째 인자로 전의 함수가 실행시킨 결과를 받습니다.
+        // 그리고 함수가 모두 실행된 뒤에 결과를 반환합니다.
+        tmpStr = _.reduce({ 'a': 1, 'b': 2 }, function(result, n, key) {
+            result[key] = n * 3;
+            return result;
+        }, {});
+        console.log(tmpStr);
+        // → { 'a': 3, 'b': 6 }
+
+        tmpStr = _.compact([0, 1, false, 2, '', 3]);
+        console.log(tmpStr);
+        // => [1, 2, 3] 
+
+        tmpStr = _.take([3, 5, 4, 7, 9], 3);
+        // => [3, 5, 4]
+        console.log(tmpStr);
+
+        tmpStr = _.uniq([1, 1, 3]);
+        console.log(tmpStr);
+        // => [1, 3]
+
+        var object = { a: 1, b: 2, c: 3, e: { f: 5 } };
+
+        tmpStr = _.get(object, 'a');
+        console.log(tmpStr);
+        // => 1
+
+        tmpStr = _.get(object, 'd');
+        console.log(tmpStr);
+        // undefined
+
+        tmpStr = _.get(object, 'd', 4);
+        console.log(tmpStr);
+        // 4
+
+        tmpStr = _.get(object, 'e.f');
+        console.log(tmpStr);
+        // 5
+
+        object = { a: 1, b: '2', c: 3 };
+
+        tmpStr = _.omit(object, ['a', 'c']);
+        console.log(tmpStr);
+        // => { 'b': '2' }
+
+        tmpStr = _.omit(object, 'a');
+        console.log(tmpStr);
+        // => { 'b': '2', 'c': 3 }
+
+        tmpStr = _.values({ a: 1, b: 2, c: [3, 4] });
+        console.log(tmpStr);
+        // => [ 1, 2, [3, 4] ]
+
+        tmpStr = _.values('hi');
+        console.log(tmpStr);
+        // => ['h', 'i']
+
+        tmpStr = _.constant(0);
+        console.log(tmpStr);
+        // => 0
+
+        tmpStr = _.constant({ a: 1 });
+        console.log(tmpStr);
+        // => { a: 1 }
+
+        tmpStr = _.times(3, _.constant(0));
+        console.log(tmpStr);
+        // => [0, 0, 0]
+
+        tmpStr = _.range(0, 6, 0);
+        console.log(tmpStr);
+        // => [0, 0, 0, 0, 0, 0]
+
+        tmpStr = _.range(4);
+        console.log(tmpStr);
+        // => [0, 1, 2, 3]
+
+        const data = { 
+            home: 78,
+            draw: 81,
+            away: 36,
+            u0_5: 16,
+            o0_5: 26,
+            u1_5: 10,
+            o1_5: 68,
+            u2_5: 48,
+            o2_5: 50,
+            u3_5: 29,
+            o3_5: 31,
+            u4_5: 50,
+            o4_5: 5,
+            u5_5: 68,
+            o5_5: 56
+        }
+         
+        result = _.mapValues(data, v => v * 100);
+        
+        console.log(result);
+        console.log(data);
+
+        function func1() {
+            console.log('func1');    
+        }
+
+        function func2() {
+            console.log('func2');    
+        }
+
+        function func3() {
+            console.log('func3');
+            return ['a', 'b', 'c'];    
+        }
+
+        //for (var i = 0; i < 3; i++) {
+        result = func3(func2(func1('1')));
+        console.log(result);
+
+        //}
+
+        // {
+        //     tag: {
+        //         name: 'tag1',
+        //         media: {
+        //             nodes: [
+        //                  {
+        //                      id: 'uid1',
+        //                      user: 'gracefullight',
+        //                      caption: 'caption1',
+        //                      likes: 10,
+        //                  },
+        //                  {
+        //                      id: 'uid2',
+        //                      user: 'gracefullight',
+        //                      caption: 'caption2',
+        //                      likes: 20,
+        //                  }
+        //             ]
+        //         }
+        //     }
+        //     },
+        //     {
+        //         tag: {
+        //         name: 'tag2',
+        //         media: {
+        //             nodes: [
+        //                  {
+        //                      id: 'uid3',
+        //                      user: 'gracefullight',
+        //                      caption: 'caption3',
+        //                      likes: 30,
+        //                  },
+        //                  {
+        //                      id: 'uid4',
+        //                      user: 'gracefullight',
+        //                      caption: 'caption4',
+        //                      likes: 40,
+        //                  },
+        //             ],
+        //         },
+        //         },
+        //     }
+        // ];
+
+        result = _.chain(data)
+                  .map('tag.media.nodes')
+                  .flatten()
+                  .values();
+
+        // 결과는 다음과 같다
+        // [
+        //      { id: 'uid1'... },
+        //      { id: 'uid2'... },
+        //      { id: 'uid3'... },
+        //      { id: 'uid4'...}
+        // ]
+
+    </script>
+</body>
+</html>

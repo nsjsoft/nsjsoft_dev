@@ -342,7 +342,7 @@
             }
 
             invoke(methodName, ...args) {
-                this._calls.push(target => target[methodName].apply(target, args))
+                this._calls.push(target => target[methodName].apply(target, args));
                 //console.log(target => target[methodName].apply(target, args));
                 return this
             }
@@ -357,11 +357,13 @@
             }
         }
 
+        /*
         var tmp = [2, 1, 3].concat.apply([2, 1, 3], [6, 4, 5]);
         console.log(tmp);
 
         var tmp2 = tmp.sort.apply(tmp);
         console.log(tmp2);
+        */
 
         tmp = new LazyChain([2, 1, 3]).invoke("concat", [6, 4, 5]).invoke("sort")._calls // [[Function], [Function]]
         console.log(tmp);

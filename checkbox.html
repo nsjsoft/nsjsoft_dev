@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $('document').ready(function(){
+              $("#check_all").click(function(){
+                var chk = $(this).is(":checked");//.attr('checked');
+                if(chk) 
+                   $(".select_subject input").prop('checked', true);
+                else  
+                   $(".select_subject input").prop('checked', false);
+              })
+        });
+
+    </script>
+</head>
+<body>
+    <label><input type='checkbox' id='check_all' class='input_check' /> <b>전체선택</b></label>
+    <ul class='select_subject'>
+    <label><input type='checkbox' class='input_check' name='class[1]' value='1' /> <b>1</b></label>
+    <label><input type='checkbox' class='input_check' name='class[2]' value='2' /> <b>2</b></label>
+    </ul>
+
+</body>
+</html>

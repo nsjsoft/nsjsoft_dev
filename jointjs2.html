@@ -71,7 +71,7 @@
                     background: {
                         color: 'rgba(255, 255, 255, 0.3)',
                     },
-                    interactive: { elementMove: false, addLinkFromMagnet: false },
+                    interactive: { elementMove: false, addLinkFromMagnet: false }
             });            
             
             // ================== jointJs 이벤트 영역 ==================
@@ -750,12 +750,15 @@
 
                     link = new joint.shapes.standard.Link({
                         router: { name: 'manhattan' },
+                        //connector: { name: 'rounded' },
                         attrs: {
                             line: {
                                 stroke: '#333333',
                                 strokeWidth: 3
-                            }
-                        }
+                            },
+                            '.marker-target': { d: 'M 30 30 L 0 5 L 10 10 z', fill: '#6a6c8a', stroke: '#6a6c8a' },
+                            '.connection': { stroke: '#6a6c8a', 'stroke-width': 2 }
+                        },                        
                     });
 
                     link.source(headNode);

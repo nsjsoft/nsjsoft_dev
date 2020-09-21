@@ -14,7 +14,7 @@
 
         });
 
-        //영상추가
+        //행추가
         var addMovie = function()
         {
             var $e = $("#movie_url ul li:last").clone();
@@ -22,7 +22,7 @@
             $("#movie_url ul").append($e);
         }
 
-        //영상 삭제
+        //행삭제
         function row_delete(obj) {
             if($('#movie_url ul li').length > 1){
                $(obj).parent().remove();
@@ -36,14 +36,14 @@
     </script>
 </head>
 <body>
-    <div id="movie_url">
-        링크 추가 <a href='javascript:addMovie();'>[Add] </a>
-        <ul> 
-            <li>
-                url : <input type=text class=ed name=url id=txtUrl size=60 maxlength=255 value='' required itemname='URL'> 
-                <button class="row_delete">삭제</button>
-            </li>
-        </ul>
-    </div>
+<div id="movie_url">
+    링크 추가 <a href='javascript:addMovie();'>[Add] </a>
+    <ul> 
+        <li>
+            url : <input type=text class=ed name=url id=txtUrl size=60 maxlength=255 value='' required itemname='URL'> 
+            <button class="row_delete">삭제</button>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

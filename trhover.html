@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            changeColor();
+            clickTd();
+            clickTr();
+        })
+
+        function changeColor() {
+            $('#table tr').mouseover(function() {
+                $(this).addClass('changeColor')
+            }).mouseout(function(){
+                $(this).removeClass('changeColor')
+            })
+        }
+
+        function clickTd(){
+            $("#table tr td").click(function(){
+                var text = $(this).text();
+                alert(text);
+            });
+        }
+
+        function clickTr(){
+            $("#table tr").click(function(){
+                var text = $(this).text();
+                var tdArray = new Array();
+                var td = $(this).children();
+
+                //tr에 있는 모든 데이터
+                console.log($(this).text());
+
+                //만들어둔 배열에 td값을 하나하나 담아준다.
+                td.each(function(i){
+                    tdArray.push(td.eq(i).text());
+                });
+                
+                console.log(tdArray);
+                var td1 = tdArray[0];
+                var td2 = tdArray[1];
+                var td3 = tdArray[2];
+                var td4 = tdArray[3];
+                var td5 = tdArray[4];
+                console.log(td1);
+                console.log(td2);
+                console.log(td3);
+                console.log(td4);
+                console.log(td5);
+
+            });
+        }
+
+    </script>
+
+    <style>
+        .changeColor {
+            background-color:#bff0ff;
+        }
+    </style>
+</head>
+<body>
+    <table id="table" border=1>
+        <thead>
+        <tr>
+        <th></th>
+        <th>sample1</th>
+        <th>sample2</th>
+        <th>sample3</th>
+        <th>sample4</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <th>sample1</th>
+        <td>Text1</td>
+        <td>Text2</td>
+        <td>Text3</td>
+        <td>Text4</td>
+        </tr>
+        <tr>
+        <th>sample2</th>
+        <td>Text11</td>
+        <td>Text22</td>
+        <td>Text33</td>
+        <td>Text44</td>
+        </tr>
+        <tr>
+        <th>sample3</th>
+        <td>Text111</td>
+        <td>Text222</td>
+        <td>Text333</td>
+        <td>Text444</td>
+        </tr>
+        <tr>
+        <th>sample4</th>
+        <td>Text1111</td>
+        <td>Text2222</td>
+        <td>Text3333</td>
+        <td>Text4444</td>
+        </tr>
+        </tbody>
+        </table>
+        
+</body>
+</html>

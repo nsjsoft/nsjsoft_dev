@@ -4,21 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>신한 AI Vision 프로세스 관리</title>
-    <link rel="stylesheet" type="text/css" href="css/joint.css"/>
-    <style>
+    
+    <!-- <style>
        /* #content {
             overflow:auto;
         } */
-    </style>
+    </style> -->
 
-    <script src="js/jquery.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="css/joint.css"/> -->
+    <link rel="stylesheet" type="text/css" href="/build/joint.css" />
+    <!-- <script src="/node_modules/jquery/dist/jquery.js" type="text/javascript" charset="utf-8"></script> -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <!--<script src="/node_modules/lodash/lodash.js"></script>
+    <script src="/node_modules/backbone/backbone.js"></script>
+    <script src="/build/joint.js"></script> -->
+
     <script src="js/lodash.js"></script>
     <script src="js/backbone.js"></script>
     <script src="js/joint.js"></script>
+    <!-- <script src="https://unpkg.com/@babel/polyfill@7.4.4/dist/polyfill.js"></script>
+
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://resources.jointjs.com/demos/joint/node_modules/lodash/lodash.js"></script>
+    <script src="https://resources.jointjs.com/demos/joint/node_modules/backbone/backbone.js"></script>
+
+    <link href="https://resources.jointjs.com/demos/joint/build/joint.css" rel="stylesheet"/>
+    <script src="https://resources.jointjs.com/demos/joint/build/joint.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+
+    <script type="text/babel">
+
+        const a = () => {
+
+                console.log("hello world");
+
+        }
+
+    </script>
 
     <!-- code -->
     <script type="text/javascript">
+
+        /*
+        jQuery.ajax({ cache: false });
+        jQuery.noConflict();
+        */
         $(document).ready(function () {
+
+            //jQuery.noConflict();
 
             // ================== 변수 선언 영역 ======================
 
@@ -77,7 +113,7 @@
             // ================== jointJs 이벤트 영역 ==================
             paper.on('element:pointerclick', function (cellView) {
 
-                paper.findViewsInArea(paper.getArea()).forEach((cell) => {
+                paper.findViewsInArea(paper.getArea()).forEach(function(cell) {
                     
                     cell.unhighlight(cell.el, {
                         highlighter: {
@@ -272,8 +308,10 @@
                
                 childNode = _.filter(nodeArray, {'parentId' : parentId});
 
+                /*
                 console.log(`childNode=>${childNode}`);
                 console.log(`idx => ${idx}`);
+                */
 
                 if (childNode.length == 0) return true;  
                 
@@ -281,17 +319,17 @@
                 //maxX += 150;
 
                 for(var i=0; i<childNode.length; i++) {
-                    
-                    console.log(`childNode nodeNm => ${childNode[i].nodeNm}`);
-                    console.log(`tmpMaxX => ${tmpMaxX}`);
+                  
+                    // console.log(`childNode nodeNm => ${childNode[i].nodeNm}`);
+                    // console.log(`tmpMaxX => ${tmpMaxX}`);
 
                     if (i > 0) maxY += 80;
 
                     var rectSource = new joint.shapes.standard.Rectangle();
                     rectSource.position(tmpMaxX, maxY);
                     
-                    console.log(`rectSource X => ${rectSource.get('position').x}`);
-                    console.log(`rectSource Y => ${rectSource.get('position').y}`);
+                    // console.log(`rectSource X => ${rectSource.get('position').x}`);
+                    // console.log(`rectSource Y => ${rectSource.get('position').y}`);
 
                     rectSource.resize(baseW, baseH);
                     rectSource.attr({
@@ -336,7 +374,7 @@
             function fn_arrDel(id) {
                 console.log(id);
                 const idx = _.findIndex(nodeArray, {'id' : id});
-                console.log(`arrDel idx => ${idx}`);
+                // console.log(`arrDel idx => ${idx}`);
                 nodeArray.splice(idx, 1);
                 currNode.remove();
             }
@@ -359,8 +397,8 @@
                 var childY = 0;
 
                 console.clear();    
-                console.log(`currNode.x => ${currNode.get('position').x}`);
-                console.log(`currNode.y => ${currNode.get('position').y}`);
+                // console.log(`currNode.x => ${currNode.get('position').x}`);
+                // console.log(`currNode.y => ${currNode.get('position').y}`);
 
                 currNode.childCnt += 1;
                 childX = baseX + (relX * currNode.processSeq); // baseX 50, relX 150
@@ -368,13 +406,13 @@
                          (currNode.childCnt == 1 ? 0 : (currNode.childCnt - 1) * 50) + 
                          (currNode.childCnt == 1 ? 0 : marginY * (currNode.childCnt - 1));
 
-                console.log(`id => ${currNode.id}`);
-                console.log(`nodeNm => ${currNode.nodeNm}`);
-                console.log(`childCnt = ${currNode.childCnt}`);
-                console.log(`parentId   => ${currNode.parentId}`);
-                console.log(`parentNm   => ${currNode.parentNm}`);
-                console.log(`childX = ${childX}`);
-                console.log(`childY = ${childY}`);                
+                // console.log(`id => ${currNode.id}`);
+                // console.log(`nodeNm => ${currNode.nodeNm}`);
+                // console.log(`childCnt = ${currNode.childCnt}`);
+                // console.log(`parentId   => ${currNode.parentId}`);
+                // console.log(`parentNm   => ${currNode.parentNm}`);
+                // console.log(`childX = ${childX}`);
+                // console.log(`childY = ${childY}`);                
                 console.log('==============');
 
                 var rectSource = new joint.shapes.standard.Rectangle();
@@ -411,7 +449,7 @@
 
                 console.log(currNode.attr('label/text'));
                 var idx = _.findIndex(nodeArray, {'id' : currNode.id});
-                console.log(`idx => ${idx}`);
+                // console.log(`idx => ${idx}`);
                 nodeArray[idx].childCnt += 1;
                 
                 rectSource.addTo(graph);               
@@ -478,16 +516,16 @@
                 //console.log(`id = ${currNode.cid}`);
                 //console.log(`id = ${currNode.cid.substring(1)}`);
 
-                console.log(`id => ${currNode.id}`);
-                console.log(`nodeNm => ${currNode.nodeNm}`);
-                console.log(`currNode.processSeq => ${currNode.processSeq}`);
-                console.log(`currNode.selfPos    => ${currNode.selfPos}`);
-                console.log(`currNode.childCnt   => ${currNode.childCnt}`);
-                console.log(`currNode.parentId   => ${currNode.parentId}`);
-                console.log(`currNode.parentNm   => ${currNode.parentNm}`);
+                // console.log(`id => ${currNode.id}`);
+                // console.log(`nodeNm => ${currNode.nodeNm}`);
+                // console.log(`currNode.processSeq => ${currNode.processSeq}`);
+                // console.log(`currNode.selfPos    => ${currNode.selfPos}`);
+                // console.log(`currNode.childCnt   => ${currNode.childCnt}`);
+                // console.log(`currNode.parentId   => ${currNode.parentId}`);
+                // console.log(`currNode.parentNm   => ${currNode.parentNm}`);
 
-                console.log(`currNode.x => ${currNode.get('position').x}`);
-                console.log(`currNode.y => ${currNode.get('position').y}`);
+                // console.log(`currNode.x => ${currNode.get('position').x}`);
+                // console.log(`currNode.y => ${currNode.get('position').y}`);
                 
                 console.log('=============');
                    
@@ -507,7 +545,7 @@
                var idx = fn_parentSearch(currNode.parentId);
                nodeArray[idx].childCnt--;
 
-               console.log(`fn_parentSearch idx => ${idx}`);
+            //    console.log(`fn_parentSearch idx => ${idx}`);
 
                var tmp = graph.getCell(currNode.parentId);
                tmp.childCnt--;
@@ -521,7 +559,7 @@
             $('#btnShowArray').on('click', function () {
                 console.clear();
                 console.log(nodeArray);
-                console.log(`length => ${nodeArray.length}`);
+                // console.log(`length => ${nodeArray.length}`);
                 console.log('=====================');
             });
 
@@ -553,13 +591,13 @@
                 var ptmp = graph.getCell(currNode.parentId);
 
                 for(var key in tmp.model) {
-                    console.log(`${key} => ${tmp[key]}`);
+                    // console.log(`${key} => ${tmp[key]}`);
                 }
 
                 console.log('==========================');
 
                 for(var key in ptmp.model) {
-                    console.log(`${key} => ${tmp[key]}`);
+                    // console.log(`${key} => ${tmp[key]}`);
                 }
                 
             });
@@ -698,7 +736,7 @@
                     }
                 });
 
-                console.log(`headNode.fontSize => ${headNode.attr('label/fontSize')}`);
+                // console.log(`headNode.fontSize => ${headNode.attr('label/fontSize')}`);
 
                 headNode.addTo(graph);
 
@@ -817,5 +855,11 @@
     <button id="btnKeyView" style="margin:5px 5px;">속성보기</button>
     <button id="btnArrToDraw" style="margin:5px 5px;">배열에서그리기</button>
     <button id="btnTest" style="margin:5px 5px;">테스트</button>
+
+    <!-- <script src="js/jquery.js"></script>
+    <script src="js/lodash.js"></script>
+    <script src="js/backbone.js"></script>
+    <script src="js/joint.js"></script> -->
+    
 </body>
 </html>

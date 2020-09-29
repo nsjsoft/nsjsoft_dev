@@ -4,3 +4,5 @@ bootstrap.min.js
 joint.js
 jquery.min.js
 lodash.js
+node_modules/
+build/

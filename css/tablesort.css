@@ -66,6 +66,6 @@
   /* tr.row:hover { background-color: lightyellow; } */
 
   .table-sortable tbody tr:hover {
-    background: #009879;
-    color: #dddddd;
+    background: #dddddd;
+    color: #009879;
 }

@@ -9,19 +9,23 @@ function sortTableByColumn(table, column, asc = true) {
     const dirModifier = asc ? 1 : -1;
     const tBody = table.tBodies[0];
     const rows = Array.from(tBody.querySelectorAll("tr"));
-  
+    console.log(rows);
+
     // Sort each row
     const sortedRows = rows.sort((a, b) => {
       const aColText = a
         .querySelector(`td:nth-child(${column + 1})`)
         .textContent.trim();
+      //console.log(aColText);
       const bColText = b
         .querySelector(`td:nth-child(${column + 1})`)
         .textContent.trim();
-  
+     //console.log(bColText);  
       return aColText > bColText ? 1 * dirModifier : -1 * dirModifier;
     });
   
+    console.log(sortedRows);
+
     // Remove all existing TRs from the table
     while (tBody.firstChild) {
       tBody.removeChild(tBody.firstChild);
@@ -38,7 +42,7 @@ function sortTableByColumn(table, column, asc = true) {
     table
       .querySelector(`th:nth-child(${column + 1})`)
       .classList.toggle("th-sort-asc", asc);
-      
+
     table
       .querySelector(`th:nth-child(${column + 1})`)
       .classList.toggle("th-sort-desc", !asc);
@@ -51,6 +55,8 @@ function sortTableByColumn(table, column, asc = true) {
         headerCell.parentElement.children,
         headerCell
       );
+
+      console.log(headerIndex);
       const currentIsAscending = headerCell.classList.contains("th-sort-asc");
   
       sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
